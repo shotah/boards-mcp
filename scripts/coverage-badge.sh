@@ -16,11 +16,11 @@ if [[ -z "$TOTAL" ]]; then
   exit 1
 fi
 
-# Color thresholds (match ucap / shields-style bands).
+# Color: gate is 70%. Green at 80, lime at the gate, olive if CI is broken.
 PCT=$(awk -v t="$TOTAL" 'BEGIN{printf "%.0f", t+0}')
 COLOR="#e05d44"
 if   [ "$PCT" -ge 80 ]; then COLOR="#4c1"
-elif [ "$PCT" -ge 60 ]; then COLOR="#97ca00"
+elif [ "$PCT" -ge 70 ]; then COLOR="#97ca00"
 elif [ "$PCT" -ge 40 ]; then COLOR="#a4a61d"
 fi
 

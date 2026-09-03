@@ -46,8 +46,8 @@ help: ## Show this help
 	@echo "  test                   Unit tests"
 	@echo "  test-short             Unit tests with -short"
 	@echo "  test-race              Unit tests with the race detector"
-	@echo "  coverage               Library coverage report (excludes main)"
-	@echo "  check                  Autofix, lint, and unit tests"
+	@echo "  coverage               Library coverage (fails below 70%)"
+	@echo "  check                  Autofix, lint, coverage gate"
 	@echo ""
 	@echo "Build & run"
 	@echo "  build                  Compile all packages (sanity check)"
@@ -91,13 +91,16 @@ test-short: ## Unit tests with -short
 test-race: ## Unit tests with the race detector (slower, worth it)
 	go test -race $(PKG)
 
-COVERAGE_PKG ?= ./server/... ./store/... ./tools/... ./cmd/...
+# Library packages only — cmd/release is a git helper, not the product.
+COVERAGE_PKG ?= ./server/... ./store/... ./tools/...
+COVERAGE_MIN ?= 70
 
-coverage: ## Tests + coverage report for library packages (writes coverage.out)
+coverage: ## Tests + coverage; fails if total is below COVERAGE_MIN (default 70)
 	go test -cover "-coverprofile=coverage.out" -covermode=atomic $(COVERAGE_PKG)
 	go tool cover "-func=coverage.out"
+	$(SHELL) scripts/check-coverage.sh coverage.out $(COVERAGE_MIN)
 
-check: fmt lint test ## Autofix, lint, test (matches pre-commit)
+check: fmt lint coverage ## Autofix, lint, coverage gate (matches pre-commit)
 
 ##@ Build & run
 

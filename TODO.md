@@ -259,6 +259,8 @@ fails closed (“Chris is not on the board; ask them to register”).
       list omits the row; two `check_in`s in one wake allowed; over-budget
       write rejected; duplicate same-challenge check-in rejected; flock
       with two goroutines; name-lock; watch shape; 14-day average settle
+- [x] Coverage gate: library packages (`server`/`store`/`tools`) fail CI
+      below 70% (`scripts/check-coverage.sh`)
 - [x] Scaffolding from feeds-mcp: Makefile, golangci, GoReleaser, CI,
       `LICENSE` MIT, `VERSION` `v0.1.0`, `.gitignore` (ignore `/boards`
       fixtures). **No `git init` in the Makefile.**

@@ -381,6 +381,7 @@ boards-mcp challenges list
 make help
 make test
 make lint
+make coverage            # fails below 70%
 make cli                 # ./bin/boards-mcp
 make version             # dry-run next tag
 ```

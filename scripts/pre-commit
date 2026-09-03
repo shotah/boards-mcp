@@ -42,6 +42,10 @@ golangci-lint run ./...
 echo "==> Test"
 go test ./...
 
+echo "==> Coverage (min 70%)"
+go test ./server/... ./store/... ./tools/... -coverprofile=coverage.out -covermode=atomic
+"$ROOT/scripts/check-coverage.sh" coverage.out 70
+
 # Re-stage files that were already staged (autofix may have rewritten them)
 if [ -n "$STAGED_FILES" ]; then
 	echo "$STAGED_FILES" | while IFS= read -r f; do
