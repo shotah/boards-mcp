@@ -1,0 +1,34 @@
+# Built binaries
+/bin/
+/boards-mcp
+/boards-mcp.exe
+
+# Local board dir (tests use t.TempDir)
+/boards/
+/boards-data/
+
+# Secrets
+.env
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test / coverage artifacts
+*.test
+*.out
+coverage
+coverage.out
+coverage.txt
+coverage.html
+*.coverprofile
+
+# Local badge output (CI publishes to gh-pages)
+/badges/
