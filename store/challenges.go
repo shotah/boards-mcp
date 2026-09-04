@@ -57,11 +57,11 @@ func (b *Board) ChallengesCreate(in CreateChallenge) (Challenge, error) {
 	}
 	kind := strings.TrimSpace(in.Kind)
 	if !validKind(kind) {
-		return Challenge{}, teach("kind must be sleep_score, steps, run_km, move_minutes, or custom.", `challenges_create(..., kind="steps")`)
+		return Challenge{}, teach("kind must be steps, distance, elevation, move, sleep, count, or custom.", `challenges_create(..., kind="steps")`)
 	}
 	mode := strings.TrimSpace(in.Mode)
 	if mode == "" {
-		if kind == kindSleepScore {
+		if kind == kindSleep {
 			mode = modeAverage
 		} else {
 			mode = modeSum

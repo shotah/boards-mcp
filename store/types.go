@@ -30,10 +30,12 @@ const (
 	challengeIDPrefix = "c_"
 	statusOpen        = "open"
 	statusClosed      = "closed"
-	kindSleepScore    = "sleep_score"
 	kindSteps         = "steps"
-	kindRunKM         = "run_km"
-	kindMoveMinutes   = "move_minutes"
+	kindDistance      = "distance"
+	kindElevation     = "elevation"
+	kindMove          = "move"
+	kindSleep         = "sleep"
+	kindCount         = "count"
 	kindCustom        = "custom"
 	modeAverage       = "average"
 	modeSum           = "sum"
@@ -210,8 +212,8 @@ func ParseParticipants(raw string) []string {
 }
 
 func validKind(k string) bool {
-	switch k {
-	case kindSleepScore, kindSteps, kindRunKM, kindMoveMinutes, kindCustom:
+	switch strings.TrimSpace(k) {
+	case kindSteps, kindDistance, kindElevation, kindMove, kindSleep, kindCount, kindCustom:
 		return true
 	default:
 		return false

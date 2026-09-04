@@ -179,9 +179,12 @@ core` for a read-only spectator. Do not grow write-last in the harness.
 
 ## Challenge schema (first pass)
 
-Keep the store dumb. **Default window 7 days, max 14.** Small `kind`
-enum: `sleep_score` (poster child), `steps`, `run_km`, `move_minutes`,
-`custom`. `mode`: `average` | `sum` | `daily`. Target is a number.
+Keep the store dumb. **Default window 7 days, max 14.** `kind` is the
+number, not the sport: `steps`, `distance` (km), `elevation` (m),
+`move` (active minutes), `sleep` (0–100), `count` (sends, pitches,
+sessions), `custom`. Sport (paddle, hike, bike, stairs, V4) lives in
+the title.
+`mode`: `average` | `sum` | `daily`. Target is a number.
 `participants` are author ids from the roster. Status:
 `open` | `closed` | `expired` | `void`.
 
@@ -238,7 +241,7 @@ fails closed (“Chris is not on the board; ask them to register”).
       roster, open challenges, scores. Messages stay private. Empty dir →
       empty card.
 - [x] Human: create GitHub `shotah/boards-mcp`
-- [ ] Push + first `v0.1.0` tag so CI / coverage / pkg.go.dev badges light up
+- [x] Push + tag (`v0.2.0`) so CI / coverage / pkg.go.dev badges light up
 
 ### First pass (JSONL)
 

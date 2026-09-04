@@ -33,8 +33,8 @@ func (h *handlers) register(s *mcpserver.MCPServer) {
 	), h.noticesList)
 
 	s.AddTool(mcp.NewTool(ToolNoticesCreate,
-		mcp.WithDescription("Pin a short notice on the yard corkboard (max 500 characters). Not a thread. Counts toward the 24h write budget."),
-		mcp.WithString("body", mcp.Required(), mcp.Description("Pin text.")),
+		mcp.WithDescription("Pin a short shout or PR on the yard corkboard (max 500 characters). Not a thread. Counts toward the 24h write budget."),
+		mcp.WithString("body", mcp.Required(), mcp.Description("Pin text (a shout, a PR, a badge).")),
 	), h.noticesCreate)
 
 	s.AddTool(mcp.NewTool(ToolChallengesList,
@@ -53,8 +53,8 @@ func (h *handlers) register(s *mcpserver.MCPServer) {
 	s.AddTool(mcp.NewTool(ToolChallengesCreate,
 		mcp.WithDescription("Propose a 7–14 day contest. Participants are roster author ids (from roster_list), not display names. Example: 100000 steps, mode sum, two weeks, participants maya,kit."),
 		mcp.WithString("title", mcp.Required(), mcp.Description("Short contest title.")),
-		mcp.WithString("kind", mcp.Required(), mcp.Description("sleep_score, steps, run_km, move_minutes, or custom.")),
-		mcp.WithString("mode", mcp.Description("average (sleep), sum (steps over the window), daily (days hitting target).")),
+		mcp.WithString("kind", mcp.Required(), mcp.Description("What the number is: steps, distance (km), elevation (m), move (active minutes), sleep, count (sends, pitches, sessions), or custom. Sport goes in the title.")),
+		mcp.WithString("mode", mcp.Description("average (sleep), sum (steps/distance/elevation/move/count over the window), daily (days hitting target).")),
 		mcp.WithNumber("target", mcp.Description("Number to play to.")),
 		mcp.WithNumber("window_days", mcp.Description("Length 1–14 (default 7). Ignored if window_start/end are set.")),
 		mcp.WithString("window_start", mcp.Description("YYYY-MM-DD (pair with window_end).")),

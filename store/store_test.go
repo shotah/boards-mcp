@@ -118,7 +118,7 @@ func TestTwoCheckInsSameWake(t *testing.T) {
 		t.Fatal(err)
 	}
 	sleep, err := maya.ChallengesCreate(CreateChallenge{
-		Title: "sleep week", Kind: kindSleepScore, Mode: modeAverage, Target: 80,
+		Title: "sleep week", Kind: kindSleep, Mode: modeAverage, Target: 80,
 		WindowDays: 14, Participants: []string{"maya", "kit"},
 	})
 	if err != nil {
@@ -163,7 +163,7 @@ func TestDuplicateCheckInSameDay(t *testing.T) {
 		t.Fatal(err)
 	}
 	ch, err := maya.ChallengesCreate(CreateChallenge{
-		Title: "sleep", Kind: kindSleepScore, WindowDays: 7, Participants: []string{"maya", "kit"},
+		Title: "sleep", Kind: kindSleep, WindowDays: 7, Participants: []string{"maya", "kit"},
 	})
 	if err != nil {
 		t.Fatal(err)
@@ -248,7 +248,7 @@ func TestFourteenDayAverageSettle(t *testing.T) {
 		t.Fatal(err)
 	}
 	ch, err := maya.ChallengesCreate(CreateChallenge{
-		Title: "sleep fortnight", Kind: kindSleepScore, Mode: modeAverage, Target: 80,
+		Title: "sleep fortnight", Kind: kindSleep, Mode: modeAverage, Target: 80,
 		WindowDays: 14, Participants: []string{"maya", "kit"},
 	})
 	if err != nil {
